@@ -89,7 +89,15 @@ public class RegServlet extends HttpServlet {
         } else if(from.equals("remove")) {  // 删除用户
             String username = request.getParameter("username");
             UserDao dao = new UserDao();
-
+            MessageDao dao1 = new MessageDao();
+            RemarkDao dao2 = new RemarkDao();
+            dao2.remove3(username);  // 删除与该用户相关的所有评论
+            List<Message> mlist = dao1.getMessageId("select id from message where username='" + username + "'");
+            for(Message m : mlist) {
+                int id = m.getId();
+                dao2.remove2(id);  // 删除与消息相关的评论
+                dao1.remove(id);  // 删除消息
+            }
             dao.remove(username);  // 删除用户
             response.sendRedirect("user.jsp");  // 重定向到用户管理页面
         } else {  // 用户注册

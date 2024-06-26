@@ -1,58 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%> <!-- 设置JSP页面的语言为Java，内容类型为HTML，字符集为UTF-8 -->
-<!DOCTYPE html> <!-- 定义文档类型为HTML5 -->
+         pageEncoding="UTF-8"%> <!-- 设置页面语言为Java，内容类型为text/html，字符集为UTF-8 -->
+<!DOCTYPE html> <!-- 声明文档类型为 HTML5 -->
 <html>
 <head>
-    <meta charset="UTF-8"> <!-- 设置页面字符编码为UTF-8 -->
-    <title>用户登录</title> <!-- 设置页面标题为"用户登录" -->
-    <script type="text/javascript"> <!-- 定义JavaScript脚本 -->
-    function verify()
-    {
-        var username = f.username.value
-
-        if(username === "")
-        {
-            alert("用户名不能为空") <!-- 如果用户名为空，弹出提示 -->
-            f.username.focus() <!-- 将焦点设置到用户名输入框 -->
-            return false <!-- 返回false，阻止表单提交 -->
+    <meta charset="UTF-8"> <!-- 设置页面字符集为UTF-8 -->
+    <title>用户登录</title> <!-- 设置页面标题为“用户登录” -->
+    <script type="text/javascript">
+        function verify() {
+            var username = f.username.value; // 获取用户名输入框的值
+            if (username === "") { // 如果用户名为空
+                alert("用户名不能为空"); // 提示错误信息
+                f.username.focus(); // 将焦点设置到用户名输入框
+                return false; // 阻止表单提交
+            }
+            var pwd = f.pwd.value; // 获取密码输入框的值
+            if (pwd === "") { // 如果密码为空
+                alert("密码不能为空"); // 提示错误信息
+                f.pwd.focus(); // 将焦点设置到密码输入框
+                return false; // 阻止表单提交
+            }
         }
-        var pwd = f.pwd.value
-        if(pwd === "")
-        {
-            alert("密码不能为空") <!-- 如果密码为空，弹出提示 -->
-            f.pwd.focus() <!-- 将焦点设置到密码输入框 -->
-            return false <!-- 返回false，阻止表单提交 -->
-        }
-    }
     </script>
-    <style type="text/css"> <!-- 定义CSS样式 -->
-    <!--
-    .STYLE1 {
-        font-family: "新宋体"; <!-- 定义STYLE1样式，字体为新宋体 -->
-        font-size: medium; <!-- 字体大小为中等 -->
-    }
-    -->
+    <style type="text/css">
+        <!--
+        .STYLE1 {
+            font-family: "新宋体"; // 设置字体
+        font-size: medium; // 设置字体大小
+        }
+        -->
     </style>
 </head>
 <body>
-<form name="f" action="LoginServlet" method="post" onSubmit="return verify()"> <!-- 定义表单，名称为f，提交到LoginServlet，使用post方法，提交时调用verify函数 -->
-    <input type="hidden" name="from" value="login"/> <!-- 隐藏输入框，名称为from，值为login -->
-    <table height="138" border="1" align="center"> <!-- 定义一个高度为138，带边框，居中的表格 -->
+<form name="f" action="LoginServlet" method="post" onSubmit="return verify()"> <!-- 表单，提交到 LoginServlet，提交前进行验证 -->
+    <input type="hidden" name="from" value="login"/> <!-- 隐藏字段，表示来自登录页面 -->
+    <table height="138" border="1" align="center"> <!-- 创建一个有边框的表格，居中显示 -->
         <tr>
-            <td width="48">用户名</td> <!-- 定义一个单元格，内容为"用户名"，宽度为48 -->
-            <td width="235"><input type="text" name="username"/></td> <!-- 定义一个单元格，包含一个文本输入框，名称为username，宽度为235 -->
+            <td width="48">用户名</td>
+            <td width="235"><input type="text" name="username"/></td> <!-- 用户名输入框 -->
         </tr>
         <tr>
-            <td>密码</td> <!-- 定义一个单元格，内容为"密码" -->
-            <td><input type="password" name="pwd"/></td> <!-- 定义一个单元格，包含一个密码输入框，名称为pwd -->
+            <td>密码</td>
+            <td><input type="password" name="pwd"/></td> <!-- 密码输入框 -->
         </tr>
         <tr>
-            <td>&nbsp</td> <!-- 定义一个空单元格 -->
-            <td><input type="submit" value="登录"/></td> <!-- 定义一个单元格，包含一个提交按钮，文本为"登录" -->
+            <td>&nbsp;</td> <!-- 空单元格 -->
+            <td><input type="submit" value="登录"/></td> <!-- 提交按钮 -->
         </tr>
     </table>
-    <p align="center"><span class="STYLE1">新用户？<a href="register.jsp">点击注册</a></span></p> <!-- 定义一个居中的段落，包含一个链接，指向register.jsp，文本为"点击注册"，样式为STYLE1 -->
-    <p align="center"><a href="admin-login.jsp">管理员登录</a></p> <!-- 定义一个居中的段落，包含一个链接，指向admin-login.jsp，文本为"管理员登录" -->
+    <p align="center"><span class="STYLE1">新用户？<a href="register.jsp">点击注册</a></span></p> <!-- 链接到注册页面 -->
+    <p align="center"><a href="admin-login.jsp">管理员登录</a></p> <!-- 链接到管理员登录页面 -->
 </form>
 </body>
-</html> <!-- 结束HTML文档 -->
+</html>
